@@ -1,4 +1,4 @@
-package com.springjmdc.filter.wrapper;
+package com.springjcmd.filter.wrapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

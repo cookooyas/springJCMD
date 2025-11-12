@@ -1,4 +1,4 @@
-package com.springjmdc.filter;
+package com.springjcmd.filter;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import com.springjmdc.filter.wrapper.XssRequestWrapper;
+import com.springjcmd.filter.wrapper.XssRequestWrapper;
 
 /***************************************************************************
  * HTMLTagFilter

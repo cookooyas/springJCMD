@@ -1,4 +1,4 @@
-package com.springjmdc.init;
+package com.springjcmd.init;
 
 import java.util.EnumSet;
 

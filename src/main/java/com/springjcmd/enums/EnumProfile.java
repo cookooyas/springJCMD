@@ -1,4 +1,4 @@
-package com.springjmdc.enums;
+package com.springjcmd.enums;
 
 /****************************************************
  * EnumProfile
