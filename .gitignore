@@ -1,24 +1,39 @@
-# Compiled class file
+# -------------------------------------------------------------------
+# Java 컴파일 결과 및 빌드 아티팩트
+# -------------------------------------------------------------------
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
-*.nar
 *.ear
 *.zip
-*.tar.gz
-*.rar
+*.tar
+*.gz
+target/
+bin/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# -------------------------------------------------------------------
+# Eclipse IDE 설정 파일
+# -------------------------------------------------------------------
+.project
+.classpath
+.settings/
+.sts4-cache/   # Spring Tool Suite (STS) 캐시
+
+# -------------------------------------------------------------------
+# Maven 및 Gradle 빌드 도구 (Maven이므로 주로 Maven 관련)
+# -------------------------------------------------------------------
+# pom.xml의 target 폴더는 위에 target/으로 이미 제외됨
+
+# -------------------------------------------------------------------
+# 로컬 개발 및 OS 생성 파일
+# -------------------------------------------------------------------
+.metadata
+temp
+tmp/
+*.log
+*.bak
+*~
+# Mac OS X
+.DS_Store
+# Windows Thumbnail Cache Files
+Thumbs.db
