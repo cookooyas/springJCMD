@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	  
 	<properties>
-		<spring.version>6.1.1</spring.version>
+		<spring.version>5.3.31</spring.version>
 		<servlet.api.version>4.0.1</servlet.api.version>
 		<jsp.api.version>2.3.3</jsp.api.version>
 	</properties>

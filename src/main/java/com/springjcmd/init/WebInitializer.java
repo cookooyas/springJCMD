@@ -14,8 +14,12 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import com.springjmdc.enums.EnumProfile;
-import com.springjmdc.filter.HTMLTagFilter;
+import com.springjcmd.config.root.ConfigContextAspect;
+import com.springjcmd.config.root.ConfigContextCommon;
+import com.springjcmd.config.root.ConfigContextDatasource;
+import com.springjcmd.config.servlet.ConfigContextMvcServlet;
+import com.springjcmd.enums.EnumProfile;
+import com.springjcmd.filter.HTMLTagFilter;
 
 /*****************************************************************
  * WebApplicationInitializer 인터페이스
@@ -38,8 +42,12 @@ public class WebInitializer implements WebApplicationInitializer{
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		// Root 컨텍스트 정의
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		// 특정 Root 컨텍스트 설정 클래스 목록 (추가 예정)
-		Class<?>[] contextClasses = new Class[] {};
+		// 특정 Root 컨텍스트 설정 클래스 목록
+		Class<?>[] contextClasses = new Class[] {
+				ConfigContextAspect.class,
+				ConfigContextCommon.class,
+				ConfigContextDatasource.class
+		};
 		// Root 컨텍스트에 설정 클래스 등록
 		rootContext.register(contextClasses);
 		// 모든 서블릿 컨텍스트에 Root 컨텍스트 등록
@@ -48,7 +56,7 @@ public class WebInitializer implements WebApplicationInitializer{
 		// WEB MVC 컨텍스트 정의
 		AnnotationConfigWebApplicationContext mvcContext = new AnnotationConfigWebApplicationContext();
 		// MVC 컨텍스트에 설정 클래스 등록
-		mvcContext.register();
+		mvcContext.register(ConfigContextMvcServlet.class);
 		
 		// MVC 컨텍스트의 프론트 컨트롤러 역할의 Dispatcher 서블릿 정의
 		DispatcherServlet mvcDispatcherServlet = new DispatcherServlet(mvcContext);
