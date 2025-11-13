@@ -11,6 +11,10 @@
 		<spring.version>5.3.31</spring.version>
 		<servlet.api.version>4.0.1</servlet.api.version>
 		<jsp.api.version>2.3.3</jsp.api.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+        <log4j.version>2.17.2</log4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
 	</properties>
 	
 	<dependencies>
@@ -38,18 +42,36 @@
 	        <artifactId>spring-tx</artifactId>
 	        <version>${spring.version}</version>
 	    </dependency>
-	    
-	    <dependency>
+        
+        <dependency>
 	        <groupId>com.zaxxer</groupId>
 	        <artifactId>HikariCP</artifactId>
-	        <version>5.1.0</version>
+	        <version>4.0.3</version>
 	    </dependency>
-	
+	    
 	    <dependency>
+	        <groupId>org.mariadb.jdbc</groupId>
+	        <artifactId>mariadb-java-client</artifactId>
+	        <version>3.1.4</version> 
+        </dependency>
+	
+        <dependency>
 	        <groupId>javax.servlet</groupId>
 	        <artifactId>javax.servlet-api</artifactId>
 	        <version>${servlet.api.version}</version>
 	        <scope>provided</scope>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.aspectj</groupId>
+	        <artifactId>aspectjrt</artifactId>
+	        <version>1.9.19</version> 
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.aspectj</groupId>
+	        <artifactId>aspectjweaver</artifactId>
+	        <version>1.9.19</version> 
 	    </dependency>
 	    
 	    <dependency>
@@ -65,5 +87,49 @@
 	        <version>1.2</version>
 	    </dependency>
 	    
+	    <dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-api</artifactId>
+	        <version>${slf4j.version}</version>
+	    </dependency>
+	
+	    <dependency>
+	        <groupId>org.apache.logging.log4j</groupId>
+	        <artifactId>log4j-slf4j-impl</artifactId>
+	        <version>${log4j.version}</version>
+	    </dependency>
+	
+	    <dependency>
+	        <groupId>org.apache.logging.log4j</groupId>
+	        <artifactId>log4j-core</artifactId>
+	        <version>${log4j.version}</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.apache.logging.log4j</groupId>
+	        <artifactId>log4j-jcl</artifactId>
+	        <version>${log4j.version}</version>
+	        <scope>runtime</scope>
+	    </dependency>
 	</dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml> 
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

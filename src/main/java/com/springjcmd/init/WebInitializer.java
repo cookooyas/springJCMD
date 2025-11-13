@@ -8,6 +8,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -30,6 +32,7 @@ import com.springjcmd.filter.HTMLTagFilter;
  * Spring은 구동 시 web.xml이 없다면 해당 인터페이스의 구현체 클래스들을 찾아 실행
  *****************************************************************/
 public class WebInitializer implements WebApplicationInitializer{
+	private static final Logger LOGGER = LoggerFactory.getLogger(WebInitializer.class); // ⬅️ Logger 선언
 	
 	/**********************************************************
 	 * onStartup
@@ -46,7 +49,7 @@ public class WebInitializer implements WebApplicationInitializer{
 		Class<?>[] contextClasses = new Class[] {
 				ConfigContextAspect.class,
 				ConfigContextCommon.class,
-				ConfigContextDatasource.class
+//				ConfigContextDatasource.class
 		};
 		// Root 컨텍스트에 설정 클래스 등록
 		rootContext.register(contextClasses);
