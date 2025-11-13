@@ -29,10 +29,16 @@ public class ConfigContextDatasource {
 	private final String jndiName;
 	
 	public ConfigContextDatasource(Environment env) {
-		this.jdbcUrl = env.getProperty("database.url");
-		this.userName = env.getProperty("database.username");
-		this.passWord = env.getProperty("database.password");
-		this.jndiName = env.getProperty("database.jndiname");
+//		this.jdbcUrl = env.getProperty("database.url");
+//		this.userName = env.getProperty("database.username");
+//		this.passWord = env.getProperty("database.password");
+//		this.jndiName = env.getProperty("database.jndiname");
+		
+		// DB 구축 이전까지 임시 적용.
+		this.jdbcUrl = "jdbc:mariadb://127.0.0.1:3306/testdb";
+	    this.userName = "dummy";
+	    this.passWord = "dummy";
+	    this.jndiName = "";
 	}
 	
 	// 빈 생성. 빈의 이름을 명시적으로 지정하지 않으면 해당 메서드(또는 클래스)의 camelCase가 bean name으로 정의됨.
@@ -53,6 +59,10 @@ public class ConfigContextDatasource {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        
+        // DB 구축 이전 단계에서는 임시 적용, timeout시 예외 발생 비활성화
+        config.setInitializationFailTimeout(-1);
+        config.setAutoCommit(false);
         
         return new HikariDataSource(config);
     }
