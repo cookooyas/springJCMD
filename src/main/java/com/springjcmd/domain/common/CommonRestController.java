@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/common")
-public class CommonController {
-	@GetMapping(value = "/healthCheck.do")
+@RequestMapping("/api")
+public class CommonRestController {
+	@GetMapping(value = "/healthCheck")
 	public String healthCheck() {
 		return "OK";
 	}
