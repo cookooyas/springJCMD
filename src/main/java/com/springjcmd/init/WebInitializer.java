@@ -19,6 +19,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import com.springjcmd.config.root.ConfigContextAspect;
 import com.springjcmd.config.root.ConfigContextCommon;
 import com.springjcmd.config.root.ConfigContextDatasource;
+import com.springjcmd.config.root.ConfigMyBatis;
 import com.springjcmd.config.servlet.ConfigContextMvcServlet;
 import com.springjcmd.enums.EnumProfile;
 import com.springjcmd.filter.HTMLTagFilter;
@@ -49,7 +50,8 @@ public class WebInitializer implements WebApplicationInitializer{
 		Class<?>[] contextClasses = new Class[] {
 				ConfigContextAspect.class,
 				ConfigContextCommon.class,
-//				ConfigContextDatasource.class
+				ConfigContextDatasource.class,
+				ConfigMyBatis.class
 		};
 		// Root 컨텍스트에 설정 클래스 등록
 		rootContext.register(contextClasses);
@@ -70,7 +72,7 @@ public class WebInitializer implements WebApplicationInitializer{
 		// 서블릿 로딩 중 우선순위 보장
 		mvcServletRegistration.setLoadOnStartup(1);
 		// 디스패처 서블릿은 .do로 끝나는 모든 요청을을 처리하도록 매핑
-		mvcServletRegistration.addMapping("*.do");
+		mvcServletRegistration.addMapping("/api/*", "*.do");
 		
 		// 인코딩 필터 정의
 		FilterRegistration.Dynamic characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter());
@@ -90,18 +92,18 @@ public class WebInitializer implements WebApplicationInitializer{
 		_setActiveProfile(rootContext);
 	}
 
-	/**********************************************************************
+	/*********************************************************************************
 	 * _setActiveProfile
 	 * 
 	 * 실행 옵션에서 설정한 profile에 따라 ActiveProfiles 값이 변경됨.
-	 * 선언된 profile이 없다면, ActiveProfile은 EnumProfile의 LOCAL_SERVER로 고정
-	 **********************************************************************/
+	 * 선언된 profile이 없다면, ActiveProfile은 EnumProfile의 enum인 LOCAL_SERVER의 값으로 고정
+	 *********************************************************************************/
 	private void _setActiveProfile(AnnotationConfigWebApplicationContext rootContext) {
 		String[] activeProfile = rootContext.getEnvironment().getActiveProfiles();
 		if(activeProfile.length == 0) {
 			//실행환경 옵션에 profile 이 없는 경우 기본적으로는 개발자 환경으로 설정		
 			rootContext.getEnvironment().setActiveProfiles(EnumProfile.LOCAL_SERVER.getValue());
-		}		
+		}
 	}
 	
 }

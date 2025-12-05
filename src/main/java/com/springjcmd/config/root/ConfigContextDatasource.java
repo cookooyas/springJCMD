@@ -2,6 +2,7 @@ package com.springjcmd.config.root;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -23,22 +24,28 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 @EnableTransactionManagement
 public class ConfigContextDatasource {
+	// @Value 어노테이션을 사용하여 application.properties의 값을 필드에 직접 주입.
+	@Value("${database.url}")
 	private final String jdbcUrl;
+	
+	@Value("${database.username}")
 	private final String userName;
+	
+	@Value("${database.password}")
 	private final String passWord;
+	
+	@Value("${database.jndiname}")
 	private final String jndiName;
 	
-	public ConfigContextDatasource(Environment env) {
-//		this.jdbcUrl = env.getProperty("database.url");
-//		this.userName = env.getProperty("database.username");
-//		this.passWord = env.getProperty("database.password");
-//		this.jndiName = env.getProperty("database.jndiname");
-		
-		// DB 구축 이전까지 임시 적용.
-		this.jdbcUrl = "jdbc:mariadb://127.0.0.1:3306/testdb";
-	    this.userName = "dummy";
-	    this.passWord = "dummy";
-	    this.jndiName = "";
+    // Environment를 통해 주입받는 대신 @Value를 사용.
+	public ConfigContextDatasource(@Value("${database.url}") String jdbcUrl,
+                                   @Value("${database.username}") String userName,
+                                   @Value("${database.password}") String passWord,
+                                   @Value("${database.jndiname}") String jndiName) {
+		this.jdbcUrl = jdbcUrl;
+		this.userName = userName;
+		this.passWord = passWord;
+		this.jndiName = jndiName;
 	}
 	
 	// 빈 생성. 빈의 이름을 명시적으로 지정하지 않으면 해당 메서드(또는 클래스)의 camelCase가 bean name으로 정의됨.
