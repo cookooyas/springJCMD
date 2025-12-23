@@ -1,7 +1,5 @@
 package com.springjcmd.domain.board;
 
-import java.util.List;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,7 +10,6 @@ import com.springjcmd.init.WebInitializer;
 import lombok.RequiredArgsConstructor;
 
 import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;;
-
 
 /*****************************************************************
  * BoardService 클래스
@@ -30,7 +27,7 @@ public class BoardService {
 	private final BoardMapper boardMapper;
 
 	public BoardDto getBoardListAsMap(BoardDto boardDto) {
-		return boardMapper.selectOne(c -> c.where().and(BoardTableSupport.id,isEqualTo(boardDto.getId())))
+		return boardMapper.selectOne(c -> c.where().and(BoardTableSupport.id, isEqualTo(boardDto.getId())))
 				.orElseGet(() -> new BoardDto());
 	}
 }

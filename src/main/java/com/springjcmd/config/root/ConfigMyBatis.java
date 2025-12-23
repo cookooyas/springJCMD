@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@MapperScan(basePackages = {"com.springjcmd.mapper"})
+@MapperScan(basePackages = {"com.springjcmd"})
 @EnableTransactionManagement
 public class ConfigMyBatis {
 	@Bean

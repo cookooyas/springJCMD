@@ -1,5 +1,6 @@
 package com.springjcmd.config.root;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ import com.springjcmd.init.WebInitializer;
 @ComponentScan(	basePackages = "com.springjcmd",
 				includeFilters = {//root context 에서는 service,repository 만 포함해서 공통으로 사용한다
 						@ComponentScan.Filter(type = FilterType.ANNOTATION,value = Service.class),
-						@ComponentScan.Filter(type = FilterType.ANNOTATION,value = Repository.class)						
+						@ComponentScan.Filter(type = FilterType.ANNOTATION,value = Repository.class)					
 				},
 				excludeFilters = {//controller 는 각 서블릿 컨텍스트에서 스캔하여 사용 한다
 						@ComponentScan.Filter(type = FilterType.ANNOTATION,value = Controller.class),												
@@ -35,7 +36,7 @@ import com.springjcmd.init.WebInitializer;
 						@ComponentScan.Filter(type = FilterType.ANNOTATION,value = Configuration.class)						
 				}
 )
-@PropertySource("classpath:/application-${spring.profiles.active}.properties")
+@PropertySource("classpath:/application-${spring.profiles.active:local}.properties")
 public class ConfigContextCommon {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebInitializer.class); // ⬅️ Logger 선언
 

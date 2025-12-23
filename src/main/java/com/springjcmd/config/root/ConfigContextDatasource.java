@@ -25,24 +25,24 @@ import com.zaxxer.hikari.HikariDataSource;
 @EnableTransactionManagement
 public class ConfigContextDatasource {
 	// @Value 어노테이션을 사용하여 application.properties의 값을 필드에 직접 주입.
-	@Value("${database.url}")
-	private final String jdbcUrl;
+	@Value("${jdbc.url}")
+	private final String url;
 	
-	@Value("${database.username}")
+	@Value("${jdbc.username}")
 	private final String userName;
 	
-	@Value("${database.password}")
+	@Value("${jdbc.password}")
 	private final String passWord;
 	
-	@Value("${database.jndiname}")
+	@Value("${jdbc.jndiname}")
 	private final String jndiName;
 	
     // Environment를 통해 주입받는 대신 @Value를 사용.
-	public ConfigContextDatasource(@Value("${database.url}") String jdbcUrl,
-                                   @Value("${database.username}") String userName,
-                                   @Value("${database.password}") String passWord,
-                                   @Value("${database.jndiname}") String jndiName) {
-		this.jdbcUrl = jdbcUrl;
+	public ConfigContextDatasource(@Value("${jdbc.url}") String url,
+                                   @Value("${jdbc.username}") String userName,
+                                   @Value("${jdbc.password}") String passWord,
+                                   @Value("${jdbc.jndiname}") String jndiName) {
+		this.url = url;
 		this.userName = userName;
 		this.passWord = passWord;
 		this.jndiName = jndiName;
@@ -58,7 +58,7 @@ public class ConfigContextDatasource {
         HikariConfig config = new HikariConfig();
 
         config.setDriverClassName("org.mariadb.jdbc.Driver");
-        config.setJdbcUrl(jdbcUrl);
+        config.setJdbcUrl(url);
         config.setUsername(userName);
         config.setPassword(passWord);
         

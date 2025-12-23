@@ -7,8 +7,8 @@ import org.mybatis.dynamic.sql.select.SelectDSLCompleter;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
 import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
+import static com.springjcmd.domain.board.tablesupport.BoardTableSupport.*;
 
-import static                                                                                                                                                                                                                                                                                                          com.springjcmd.domain.board.tablesupport.BoardTableSupport.*;
 import com.springjcmd.domain.board.dto.BoardDto;
 
 import java.util.Optional;
