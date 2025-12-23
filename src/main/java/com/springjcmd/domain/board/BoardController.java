@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.springjcmd.domain.board.dto.BoardDto;
 import com.springjcmd.init.WebInitializer;
 
 @Controller
@@ -25,8 +28,10 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardList.do")
-	public String getBoardList(Model model) {
-		List<Map<String, Object>> boardList = boardService.getBoardListAsMap();
+	public String getBoardList(Model model, @RequestParam int id) {
+		BoardDto inBoardList = new BoardDto();
+		inBoardList.setId(id);
+		BoardDto boardList = boardService.getBoardListAsMap(inBoardList);
 		model.addAttribute("list",boardList);
 		return "board/boardList";
 	}

@@ -100,6 +100,7 @@ public class WebInitializer implements WebApplicationInitializer{
 	 *********************************************************************************/
 	private void _setActiveProfile(AnnotationConfigWebApplicationContext rootContext) {
 		String[] activeProfile = rootContext.getEnvironment().getActiveProfiles();
+		LOGGER.info("{}",activeProfile.length);
 		if(activeProfile.length == 0) {
 			//실행환경 옵션에 profile 이 없는 경우 기본적으로는 개발자 환경으로 설정		
 			rootContext.getEnvironment().setActiveProfiles(EnumProfile.LOCAL_SERVER.getValue());
